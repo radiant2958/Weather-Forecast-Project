@@ -29,10 +29,7 @@ media
 # MacOS
 .DS_Store
 
-# Docker
-*.log
-Dockerfile
-docker-compose.yml
+
 
 # Other
 .idea/
