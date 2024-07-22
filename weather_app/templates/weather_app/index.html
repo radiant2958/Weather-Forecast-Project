@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Узнайте погоду в любом городе!</h1>
+        <p>Введите название города ниже, чтобы получить актуальные данные о погоде на ближайшие 7 дней.</p>
+        <form method="post" id="cityForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_name">Название:</label>
+                {{ form.name }}
+            </div>
+            <button type="submit">Получить прогноз</button>
+        </form>
+
+        {% if temperatures %}
+            <h2>Прогноз погоды на ближайшие 7 дней</h2>
+            <ul>
+                {% for date, temp_max, temp_min, precipitation, cloudcover in temperatures %}
+                    <li>Дата: {{ date }} - Макс: {{ temp_max }}°C - Мин: {{ temp_min }}°C - Дождь: {{ precipitation }} мм - Облачность: {{ cloudcover }}%</li>
+                {% empty %}
+                    <li>Нет данных о погоде.</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Нет данных для отображения.</p>
+        {% endif %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-autocomplete/1.0.7/jquery.auto-complete.min.js"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

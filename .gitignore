@@ -1,0 +1,40 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+.eggs/
+*.pyd
+*.pyo
+*.pdb
+
+# Virtualenv
+venv/
+ENV/
+env/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Docker
+*.log
+Dockerfile
+docker-compose.yml
+
+# Other
+.idea/
+*.swp
+*.swo
